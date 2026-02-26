@@ -15,18 +15,14 @@ git clone https://github.com/Mai-de-jerez/book_shop_para_docker.git
 cd book_shop_para_docker
 ```
 
-### 2. Crea el archivo `.env`
+### 2. Modifica el archivo `.env`
 
-Crea un archivo llamado `.env` en la raíz del proyecto. Puedes usar el `.env` incluido como plantilla — solo tienes que rellenar estos campos:
+Modifica el archivo llamado `.env` si quieres probar recuperar tu contraseña olvidada con tu cuenta de mailtrap
 
 | Variable | Descripción |
 |---|---|
-| `DB_USER` | Usuario de MySQL (el que quieras) |
-| `DB_PASSWORD` | Contraseña de MySQL (la que quieras) |
-| `MYSQL_ROOT_PASSWORD` | Debe ser igual que `DB_PASSWORD` |
 | `MAIL_USER` | Tu usuario de [Mailtrap](https://mailtrap.io) |
 | `MAIL_PASSWORD` | Tu contraseña de Mailtrap |
-| `JWT_SECRET` | Cualquier cadena de mínimo 32 caracteres |
 
 ### 3. Arranca el proyecto
 ```bash
