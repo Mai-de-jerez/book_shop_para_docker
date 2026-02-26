@@ -1,0 +1,42 @@
+version: '3.8'
+
+services:
+  db:
+    image: mysql:8
+    container_name: book_shop_db
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./book_shop_db.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - book_shop_net
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  app:
+    image: mai1985/book_shop:v1.0
+    container_name: book_shop_app
+    restart: unless-stopped
+    ports:
+      - "8081:8080"
+    env_file:
+      - .env
+    networks:
+      - book_shop_net
+    depends_on:
+      db:
+        condition: service_healthy
+
+networks:
+  book_shop_net:
+    driver: bridge
+
+volumes:
+  mysql_data:
+    driver: local
