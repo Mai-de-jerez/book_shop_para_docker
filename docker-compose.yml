@@ -27,8 +27,6 @@ services:
     restart: unless-stopped
     ports:
       - "8081:8080"
-    volumes:
-      - app_fotos:/usr/local/tomcat/webapps/ROOT/imagenes
     env_file:
       - .env
     networks:
@@ -44,5 +42,4 @@ networks:
 volumes:
   mysql_data:
     driver: local
-  app_fotos: 
-    driver: local
+
